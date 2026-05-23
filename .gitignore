@@ -1,0 +1,41 @@
+# Secrets
+.env
+*.key
+secrets.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+.venv/
+venv/
+env/
+
+# Data (full)
+data/full/
+data/raw/
+*.jsonl.gz
+
+# Model
+checkpoints/*.bin
+checkpoints/*.pt
+checkpoints/*.safetensors
+
+# Logs
+logs/
+wandb/
+runs/
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+
+# Outputs
+outputs/
+predictions/
+
+# Anonymity helpers (local-only, may contain real names; never commit)
+anonymity_check.sh
+.identity_notes

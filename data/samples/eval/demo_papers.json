@@ -1,0 +1,16 @@
+{
+  "paper_id": "iclr2019_demo",
+  "title": "Demo Paper: A Light-Touch Approach to Curriculum Distillation",
+  "abstract": "We propose a light-touch curriculum distillation framework that achieves competitive accuracy on three benchmarks while halving the teacher's compute.",
+  "sections": [
+    {"heading": "Introduction", "paragraphs": [
+      "Knowledge distillation typically requires running an expensive teacher over the entire training set; we study whether selective distillation can match this quality with substantially less teacher compute."
+    ]},
+    {"heading": "Method", "paragraphs": [
+      "We propose a difficulty-aware sampler that requests teacher labels only for examples where the student's predictive entropy exceeds a threshold."
+    ]},
+    {"heading": "Experiments", "paragraphs": [
+      "On CIFAR-100, ImageNet-1k, and a 3M-example text classification benchmark, our method matches dense distillation within 0.4 accuracy points while reducing teacher compute by 51%."
+    ]}
+  ]
+}

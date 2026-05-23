@@ -1,0 +1,41 @@
+student:
+  base_model: Qwen/Qwen2.5-7B-Instruct
+  precision: bfloat16
+  gradient_checkpointing: true
+
+  lora:
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules: [q_proj, k_proj, v_proj, o_proj]
+
+train:
+  data_path: ./data/samples/distilled/D_distill.jsonl
+  output_dir: ./checkpoints/egtr_student
+  num_epochs: 3
+  per_device_batch_size: 2
+  gradient_accumulation_steps: 8
+  learning_rate: 1.0e-4
+  warmup_ratio: 0.03
+  logging_steps: 10
+  save_steps: 200
+  max_length: 4096
+  seed: 42
+
+distillation:
+  task_prefixes:
+    reasoning: "[Reasoning] "    # paper Eq. 3: [τ] ⊕ L'_i with τ = Reasoning
+    review:    "[Review] "       # paper Eq. 3: [τ] ⊕ L'_i with τ = Review
+  lambda_balance: 0.5       # trade-off between reasoning and review loss
+  evidence_weight_map:
+    "Strong Evidence-Supports": 1.0
+    "Strong Evidence-Refutes": 1.0
+    "Weak Evidence-Metadata Only": 0.5
+    "No Evidence": 0.3
+    "Non-verifiable Item": 0.3
+
+ablation:
+  use_reasoning_supervision: true
+  use_task_prefix: true
+  use_evidence_labels: true
+  use_evidence_weighting: true

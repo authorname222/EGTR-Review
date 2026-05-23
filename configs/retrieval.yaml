@@ -1,0 +1,29 @@
+retrieval:
+  serpapi:
+    engine: google_scholar
+    num: 10
+    timeout: 30
+
+  arxiv:
+    max_results: 10
+    sort_by: relevance
+
+  semantic_scholar:
+    fields: [title, abstract, year, venue, authors, externalIds]
+    limit: 10
+
+  cache:
+    enabled: true
+    dir: ./data/samples/distilled/cached_evidence
+    ttl_days: 30
+
+  leak_filter:
+    enabled: true
+    blocked_domains:
+      - openreview.net
+    blocked_keywords:
+      - rebuttal
+      - "official review"
+      - "meta-review"
+      - "decision: accept"
+      - "decision: reject"

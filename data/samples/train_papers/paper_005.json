@@ -1,0 +1,20 @@
+{
+  "paper_id": "iclr2020_0005",
+  "title": "Sample Paper: Graph-Aware Token Pruning for Code Models",
+  "abstract": "We exploit the abstract syntax tree of source code to prune redundant tokens before they enter a code language model, reducing FLOPs by 38% with no measurable drop on HumanEval.",
+  "sections": [
+    {"heading": "Introduction", "paragraphs": [
+      "Code language models tokenize source as text, ignoring rich syntactic structure already known to compilers.",
+      "We argue that AST traversal order and node typing carry strong cues for which tokens can be dropped."
+    ]},
+    {"heading": "Method", "paragraphs": [
+      "We parse code with tree-sitter and assign each token an importance score from its AST node type.",
+      "Low-importance tokens are merged with neighbors via attention-pooling before the first transformer block."
+    ]},
+    {"heading": "Experiments", "paragraphs": [
+      "On HumanEval, pass@1 changes from 36.2 to 35.9, well within seed variance.",
+      "Throughput improves 1.6x on long completions; FLOPs are reduced by 38%."
+    ]}
+  ],
+  "citations": []
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "paper_id": "iclr2019_demo",
+    "review": {
+      "summary": "The paper proposes a difficulty-aware sampler that only requests teacher labels for examples whose student-side predictive entropy exceeds a threshold. It claims to match dense distillation accuracy within 0.4 points while reducing teacher compute by 51% on CIFAR-100, ImageNet-1k, and a 3M-example text classification benchmark.",
+      "strengths": [
+        { "comment": "The difficulty-aware sampler is an intuitive, low-cost addition to standard distillation pipelines.", "impact": "Medium", "evidence_grounding": "Method description.", "trace_ids": [] }
+      ],
+      "weaknesses": [
+        { "comment": "The entropy threshold is reported as a single value; there is no ablation across {0.1, 0.5, 0.9} so robustness to the threshold cannot be judged.", "impact": "High", "evidence_grounding": "Experiments Section.", "trace_ids": [] }
+      ],
+      "questions": [
+        { "question": "How is teacher compute measured: wall-clock or FLOPs?", "type": "Clarification", "trace_ids": [] }
+      ],
+      "suggestions": [
+        { "suggestion": "Add a random-subset distillation baseline to isolate the contribution of the difficulty-aware criterion.", "related_to": "Weakness W1", "trace_ids": [] }
+      ],
+      "traceability_notes": []
+    }
+  }
+]

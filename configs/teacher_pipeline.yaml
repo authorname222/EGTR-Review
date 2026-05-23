@@ -1,0 +1,39 @@
+teacher:
+  llm:
+    model: gpt-5.1
+    temperature: 0.2
+    max_output_tokens: 4096
+
+  # Maximum Structure-Parser ↔ Key-Element-Extractor feedback rounds
+  # (paper §3.2 caps this at 2).
+  max_resegmentation_rounds: 2
+
+  structure_parser:
+    max_chunk_tokens: 800
+    overlap_tokens: 80
+
+  key_element_extractor:
+    max_queries_per_unit: 2
+
+  evidence_retriever:
+    sources: [serpapi, arxiv, semantic_scholar]
+    top_k_per_source: 5
+    max_evidence_per_unit: 3
+    rewrite_rounds: 2
+    leak_filter: true   # must be true: filter OpenReview reviews / rebuttals / decisions
+
+  verification_reasoner:
+    # The Flag→path mapping is governed by docs/prompts/04_verification_reasoner.md and applied
+    # in src/agents/verification_reasoner.py:FLAG_TO_PATH. These per-strategy
+    # toggles let the ablation harness disable a single path without
+    # editing code.
+    strategies:
+      "Strong Evidence-Supports": Support Verification
+      "Strong Evidence-Refutes":  Refutation Verification
+      "Weak Evidence-Metadata Only": Weak Evidence Probing
+      "No Evidence":             Internal Consistency Checking
+      "Non-verifiable Item":     Non-verifiable Quality Assessment
+
+  review_synthesizer:
+    min_evidence_per_comment: 1
+    dedup_threshold: 0.85

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  EGTR-Review — Framework Figure 2.
+  Editable source for assets/framework.png. Conventions:
+    Teacher block        : light blue   (#dbeafe)
+    Per-agent box        : white with blue border (#1d4ed8)
+    External retrieval   : light green  (#dcfce7)
+    Intermediate symbol  : pale yellow  (#fef3c7)
+    Distillation arrow   : orange       (#f97316)
+    Student block        : light purple (#ede9fe)
+  No author / institution names are embedded.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="Helvetica, Arial, sans-serif">
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#111827"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-feedback" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <!-- ============== Title ============== -->
+  <text x="800" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#0f172a">
+    EGTR-Review: Multi-Agent Teacher Distillation for Evidence-Grounded Peer Review
+  </text>
+
+  <!-- ============== Input ============== -->
+  <g>
+    <rect x="60" y="80" width="150" height="60" rx="10" fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+    <text x="135" y="118" text-anchor="middle" font-size="20" font-weight="600" fill="#78350f">Paper D&#x1d62;</text>
+  </g>
+
+  <!-- ============== Teacher block ============== -->
+  <g>
+    <rect x="40" y="170" width="1100" height="420" rx="14" fill="#dbeafe" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="60" y="200" font-size="18" font-weight="700" fill="#1e3a8a">
+      Multi-Agent Teacher (training time)
+    </text>
+
+    <!-- Agent I: Structure Parser -->
+    <g>
+      <rect x="70" y="220" width="180" height="80" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="160" y="252" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">Structure</text>
+      <text x="160" y="272" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">Parser Agent</text>
+      <text x="160" y="290" text-anchor="middle" font-size="11" fill="#475569">positions P&#x1d62;,&#x2099;</text>
+    </g>
+
+    <!-- Agent II: Key Element Extractor -->
+    <g>
+      <rect x="280" y="220" width="180" height="80" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="370" y="248" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">Key Element</text>
+      <text x="370" y="266" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">Extractor Agent</text>
+      <text x="370" y="290" text-anchor="middle" font-size="11" fill="#475569">queries Q&#x1d62;,&#x2099;</text>
+    </g>
+    <!-- KEE → SP feedback (re-segmentation, ≤2 rounds) -->
+    <path d="M280,238 C 260,205 240,205 220,228 L 220,228" stroke="#7c3aed" stroke-width="1.8" fill="none"
+          stroke-dasharray="5,3" marker-end="url(#arrow-feedback)"/>
+    <text x="225" y="200" font-size="10" fill="#7c3aed">re-segment (&#x2264;2)</text>
+
+    <!-- Agent III: Evidence Retriever -->
+    <g>
+      <rect x="490" y="220" width="200" height="80" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="590" y="248" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">Evidence</text>
+      <text x="590" y="266" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">Retriever Agent</text>
+      <text x="590" y="290" text-anchor="middle" font-size="11" fill="#475569">E&#x1d62;,&#x2099; + Flag&#x1d62;,&#x2099;</text>
+    </g>
+    <!-- ER → KEE feedback (query refine, ≤2 rounds) -->
+    <path d="M490,238 C 470,205 450,205 440,228 L 440,228" stroke="#7c3aed" stroke-width="1.8" fill="none"
+          stroke-dasharray="5,3" marker-end="url(#arrow-feedback)"/>
+    <text x="445" y="200" font-size="10" fill="#7c3aed">query refine (&#x2264;2)</text>
+
+    <!-- External retrievers -->
+    <g>
+      <rect x="490" y="335" width="200" height="75" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+      <text x="590" y="356" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">External retrieval</text>
+      <text x="590" y="376" text-anchor="middle" font-size="11" fill="#14532d">SerpApi · arXiv ·</text>
+      <text x="590" y="392" text-anchor="middle" font-size="11" fill="#14532d">Semantic Scholar</text>
+      <path d="M590,335 L590,300" stroke="#166534" stroke-width="1.6" fill="none"
+            stroke-dasharray="3,2" marker-end="url(#arrow)"/>
+      <text x="600" y="320" font-size="10" fill="#166534">leak-filtered</text>
+    </g>
+
+    <!-- L'_i banner -->
+    <g>
+      <rect x="720" y="225" width="170" height="70" rx="8" fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+      <text x="805" y="252" text-anchor="middle" font-size="13" font-weight="700" fill="#78350f">Evidence-enhanced</text>
+      <text x="805" y="270" text-anchor="middle" font-size="13" font-weight="700" fill="#78350f">L&#x2032;&#x1d62;</text>
+      <text x="805" y="288" text-anchor="middle" font-size="10" fill="#78350f">{(P, C, E, Flag)}&#x2099;</text>
+    </g>
+
+    <!-- Agent IV: Verification Reasoner -->
+    <g>
+      <rect x="920" y="220" width="200" height="80" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="1020" y="248" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">Verification</text>
+      <text x="1020" y="266" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">Reasoner Agent</text>
+      <text x="1020" y="290" text-anchor="middle" font-size="11" fill="#475569">flag-conditioned T&#x1d62;</text>
+    </g>
+
+    <!-- Five Flag paths inside the Verification Reasoner -->
+    <g>
+      <rect x="920" y="335" width="200" height="120" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+      <text x="1020" y="354" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">5 verification paths</text>
+      <text x="930" y="372" font-size="10" fill="#0f172a">• Strong Evidence-Supports  &#x2192; verify support</text>
+      <text x="930" y="386" font-size="10" fill="#0f172a">• Strong Evidence-Refutes   &#x2192; identify conflict</text>
+      <text x="930" y="400" font-size="10" fill="#0f172a">• Weak Evidence-Metadata Only &#x2192; clarification Q</text>
+      <text x="930" y="414" font-size="10" fill="#0f172a">• No Evidence &#x2192; internal consistency</text>
+      <text x="930" y="428" font-size="10" fill="#0f172a">• Non-verifiable Item &#x2192; writing-quality check</text>
+    </g>
+
+    <!-- Agent V: Review Synthesizer -->
+    <g>
+      <rect x="720" y="475" width="200" height="80" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="820" y="503" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">Review</text>
+      <text x="820" y="521" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">Synthesizer Agent</text>
+      <text x="820" y="545" text-anchor="middle" font-size="11" fill="#475569">filter · merge · rank</text>
+    </g>
+
+    <!-- Y_i output banner -->
+    <g>
+      <rect x="450" y="478" width="170" height="75" rx="8" fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+      <text x="535" y="503" text-anchor="middle" font-size="13" font-weight="700" fill="#78350f">Final review Y&#x1d62;</text>
+      <text x="535" y="521" text-anchor="middle" font-size="10" fill="#78350f">summary / strengths /</text>
+      <text x="535" y="537" text-anchor="middle" font-size="10" fill="#78350f">weaknesses / questions</text>
+    </g>
+
+    <!-- Edges: D_i → SP → KEE → ER → L'_i → VR → Synth → Y_i -->
+    <path d="M135,140 L135,220" stroke="#111827" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <path d="M250,260 L280,260" stroke="#111827" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <path d="M460,260 L490,260" stroke="#111827" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <path d="M690,260 L720,260" stroke="#111827" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <path d="M890,260 L920,260" stroke="#111827" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <path d="M920,515 L820,515 L820,475" stroke="#111827" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <text x="850" y="475" font-size="11" fill="#1e3a8a">T&#x1d62;</text>
+    <path d="M720,515 L620,515" stroke="#111827" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <!-- L'_i also feeds Review Synthesizer -->
+    <path d="M805,295 C 805,400 820,400 820,475" stroke="#0ea5e9" stroke-width="1.4" fill="none"
+          stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+    <text x="830" y="380" font-size="10" fill="#0ea5e9">L&#x2032;&#x1d62;</text>
+  </g>
+
+  <!-- ============== Distillation arrow ============== -->
+  <g>
+    <path d="M535,553 L535,620" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrow-orange)"/>
+    <text x="555" y="595" font-size="14" font-weight="700" fill="#c2410c">
+      D&#x1d65;&#x1d62;&#x209b;&#x209c;&#x1d62;&#x2097;&#x2097; = {(L&#x2032;&#x1d62;, T&#x1d62;, Y&#x1d62;)}
+    </text>
+  </g>
+
+  <!-- ============== Student block ============== -->
+  <g>
+    <rect x="40" y="640" width="1520" height="220" rx="14" fill="#ede9fe" stroke="#5b21b6" stroke-width="2"/>
+    <text x="60" y="668" font-size="18" font-weight="700" fill="#5b21b6">
+      Student model — multi-task distillation (paper Eq. 4)
+    </text>
+
+    <!-- L'_i input -->
+    <g>
+      <rect x="80" y="700" width="170" height="70" rx="8" fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+      <text x="165" y="730" text-anchor="middle" font-size="13" font-weight="700" fill="#78350f">L&#x2032;&#x1d62; (evidence-</text>
+      <text x="165" y="748" text-anchor="middle" font-size="13" font-weight="700" fill="#78350f">enhanced input)</text>
+    </g>
+
+    <!-- Reasoning prefix → T_i -->
+    <g>
+      <rect x="320" y="690" width="320" height="50" rx="8" fill="#ffffff" stroke="#5b21b6" stroke-width="2"/>
+      <text x="480" y="722" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">
+        [Reasoning]  &#x2295;  L&#x2032;&#x1d62;   &#x2192;   T&#x1d62;
+      </text>
+    </g>
+    <!-- Review prefix → Y_i -->
+    <g>
+      <rect x="320" y="750" width="320" height="50" rx="8" fill="#ffffff" stroke="#5b21b6" stroke-width="2"/>
+      <text x="480" y="782" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">
+        [Review]  &#x2295;  L&#x2032;&#x1d62;   &#x2192;   Y&#x1d62;
+      </text>
+    </g>
+    <path d="M250,735 L320,715" stroke="#111827" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+    <path d="M250,735 L320,775" stroke="#111827" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+    <!-- Evidence-weighted objective -->
+    <g>
+      <rect x="710" y="690" width="430" height="110" rx="10" fill="#ffffff" stroke="#5b21b6" stroke-width="2"/>
+      <text x="925" y="715" text-anchor="middle" font-size="13" font-weight="700" fill="#5b21b6">
+        Evidence-weighted objective (Eq. 4)
+      </text>
+      <text x="925" y="745" text-anchor="middle" font-size="15" fill="#0f172a">
+        L = (1/M) &#x2211;&#x1d62; &#x03b1;&#x1d62; ( L&#x1d62;&#x1d3f;&#x1d49;&#x1d43;&#x02e2;&#x1d52;&#x207F;&#x1d62;&#x207F;&#x1d4d;
+        &#x002b; &#x03bb; &#x00b7; L&#x1d62;&#x1d3f;&#x1d49;&#x1d65;&#x1d62;&#x1d49;&#x02b7; )
+      </text>
+      <text x="925" y="775" text-anchor="middle" font-size="11" fill="#475569">
+        α&#x1d62; aggregated from per-unit Flag&#x1d62;,&#x2099;  ·  λ balances reasoning vs. review
+      </text>
+    </g>
+
+    <!-- Inference note -->
+    <g>
+      <rect x="1180" y="690" width="350" height="110" rx="10" fill="#fff7ed" stroke="#c2410c" stroke-width="2"/>
+      <text x="1355" y="713" text-anchor="middle" font-size="13" font-weight="700" fill="#c2410c">
+        Inference
+      </text>
+      <text x="1355" y="738" text-anchor="middle" font-size="11" fill="#1f2937">Keep: paper parsing + evidence retrieval</text>
+      <text x="1355" y="756" text-anchor="middle" font-size="11" fill="#1f2937">Replace: Verification Reasoner + Synthesizer</text>
+      <text x="1355" y="780" text-anchor="middle" font-size="11" font-weight="700" fill="#c2410c">
+        with the distilled student model
+      </text>
+    </g>
+  </g>
+
+  <!-- ============== Footer note ============== -->
+  <text x="800" y="888" text-anchor="middle" font-size="11" fill="#475569">
+    Solid black: data flow  ·  Dashed purple: bidirectional feedback (≤2 rounds)  ·  Dashed sky: L′&#x1d62; reuse  ·  Orange: distillation
+  </text>
+</svg>

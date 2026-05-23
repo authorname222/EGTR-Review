@@ -1,0 +1,23 @@
+{
+  "paper_id": "iclr2020_0003",
+  "title": "Sample Paper: Robust Self-Supervised Pretraining under Noisy Image Crops",
+  "abstract": "We study the effect of crop-level label noise on contrastive self-supervised learning and propose a noise-aware view selection strategy that improves linear probe accuracy by 1.8% on ImageNet-100.",
+  "sections": [
+    {"heading": "Introduction", "paragraphs": [
+      "Contrastive SSL assumes that two random crops of the same image are semantically equivalent, which is violated for low-overlap crops.",
+      "We propose a noise estimator that downweights low-overlap pairs during pretraining."
+    ]},
+    {"heading": "Method", "paragraphs": [
+      "We compute a soft alignment score from a small auxiliary network and use it to scale the contrastive loss term per pair.",
+      "Training is otherwise identical to MoCo-v3."
+    ]},
+    {"heading": "Experiments", "paragraphs": [
+      "On ImageNet-100 we report linear probe top-1 of 80.1 vs. 78.3 for MoCo-v3 baseline.",
+      "Transfer to CIFAR-100 improves by 1.1 points."
+    ]}
+  ],
+  "citations": [
+    {"ref_id": "ref1", "raw": "Chen et al., MoCo-v3, 2021."},
+    {"ref_id": "ref2", "raw": "Caron et al., DINO, 2021."}
+  ]
+}

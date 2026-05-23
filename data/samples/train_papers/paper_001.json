@@ -1,0 +1,26 @@
+{
+  "paper_id": "iclr2019_0001",
+  "title": "Sample Paper: Curriculum Pretraining for Sparse-Reward Reinforcement Learning",
+  "abstract": "We study whether curriculum-based pretraining improves sample efficiency in sparse-reward navigation tasks. We propose a two-stage curriculum that first trains on dense-reward proxy tasks before transferring to the sparse target task. Experiments on a 2D maze suite show 2.3x improvement over a from-scratch baseline.",
+  "sections": [
+    {"heading": "Introduction", "paragraphs": [
+      "Sparse-reward exploration remains a long-standing challenge in reinforcement learning. Prior work has explored intrinsic motivation, hindsight experience replay, and curriculum learning as separate remedies.",
+      "We hypothesize that a structured curriculum of dense-reward proxies provides the agent with reusable skills that transfer to the sparse target task."
+    ]},
+    {"heading": "Method", "paragraphs": [
+      "Stage 1 trains the policy on dense-reward shaping. Stage 2 fine-tunes on the sparse-reward target with a KL constraint to the Stage 1 policy.",
+      "We use PPO with a shared encoder; the encoder is frozen during Stage 2 to preserve representations."
+    ]},
+    {"heading": "Experiments", "paragraphs": [
+      "We evaluate on MiniGrid mazes of sizes 6x6, 10x10, and 16x16. Sample efficiency is measured as the number of environment steps to reach 80% success rate.",
+      "Our method achieves 80% success in 1.2M steps on 10x10 vs. 2.8M for the from-scratch baseline."
+    ]},
+    {"heading": "Conclusion", "paragraphs": [
+      "Curriculum pretraining yields substantial sample-efficiency gains; the KL constraint is critical when transferring to harder mazes."
+    ]}
+  ],
+  "citations": [
+    {"ref_id": "ref1", "raw": "Schulman et al., Proximal Policy Optimization, 2017."},
+    {"ref_id": "ref2", "raw": "Andrychowicz et al., Hindsight Experience Replay, 2017."}
+  ]
+}

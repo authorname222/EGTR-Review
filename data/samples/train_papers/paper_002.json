@@ -1,0 +1,26 @@
+{
+  "paper_id": "iclr2019_0002",
+  "title": "Sample Paper: Sparse Attention Routing for Long-Context Language Modeling",
+  "abstract": "We introduce a sparse attention routing scheme that scales linearly in sequence length while retaining 98% of full-attention quality on language modeling and reading comprehension. The router predicts query-aware key selection masks at each layer.",
+  "sections": [
+    {"heading": "Introduction", "paragraphs": [
+      "Full self-attention scales quadratically. Existing sparse variants either use fixed patterns or learn routing in coarse blocks.",
+      "Our contribution is a per-token gating network that scores keys in O(L log L) and selects the top-k for attention."
+    ]},
+    {"heading": "Method", "paragraphs": [
+      "We replace the dense softmax attention with a routed attention where each query selects k=64 keys from the cache.",
+      "The router is a 2-layer MLP shared across heads; routing scores are made differentiable via Gumbel-top-k."
+    ]},
+    {"heading": "Experiments", "paragraphs": [
+      "We pretrain a 350M-parameter model on the Pile and evaluate on LAMBADA and SCROLLS.",
+      "Our model matches full-attention perplexity within 0.2 nats while reducing memory by 6.4x at 8k context."
+    ]},
+    {"heading": "Limitations", "paragraphs": [
+      "Routing quality degrades when k<32; we did not test contexts longer than 16k."
+    ]}
+  ],
+  "citations": [
+    {"ref_id": "ref1", "raw": "Tay et al., Long Range Arena, 2021."},
+    {"ref_id": "ref2", "raw": "Beltagy et al., Longformer, 2020."}
+  ]
+}

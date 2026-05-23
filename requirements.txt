@@ -1,0 +1,27 @@
+# Core
+torch>=2.1.0
+transformers>=4.40.0
+accelerate>=0.30.0
+peft>=0.10.0
+datasets>=2.18.0
+
+# LLM API
+openai>=1.30.0
+tenacity>=8.2.0
+
+# Retrieval
+google-search-results>=2.4.2  # SerpApi
+semanticscholar>=0.7.0
+arxiv>=2.1.0
+
+# Evaluation
+rouge-score>=0.1.2
+bert-score>=0.3.13
+scikit-learn>=1.4.0
+sentence-transformers>=2.7.0
+
+# Utils
+pyyaml>=6.0
+tqdm>=4.66.0
+python-dotenv>=1.0.0
+jsonlines>=4.0.0

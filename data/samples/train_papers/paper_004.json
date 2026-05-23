@@ -1,0 +1,22 @@
+{
+  "paper_id": "iclr2020_0004",
+  "title": "Sample Paper: Calibration of Language Model Uncertainty via Temperature-Scaled Retrieval",
+  "abstract": "We propose a retrieval-augmented temperature scaling method to recalibrate language model confidences on factoid QA, reducing expected calibration error from 12% to 3.4% without retraining.",
+  "sections": [
+    {"heading": "Introduction", "paragraphs": [
+      "Modern language models are systematically overconfident on rare entities.",
+      "Existing temperature scaling is global; we propose per-question scaling driven by retrieval evidence count."
+    ]},
+    {"heading": "Method", "paragraphs": [
+      "Given a question, we retrieve k passages and set the temperature as T = T0 * f(retrieval_score).",
+      "f is a learned monotone function fit on a held-out validation set."
+    ]},
+    {"heading": "Experiments", "paragraphs": [
+      "On Natural Questions, we report ECE of 3.4% (vs. 12% baseline) and Brier score of 0.18.",
+      "We ablate the f function: piecewise-linear vs. sigmoid; piecewise-linear wins by 0.6 ECE points."
+    ]}
+  ],
+  "citations": [
+    {"ref_id": "ref1", "raw": "Guo et al., On Calibration of Modern Neural Networks, 2017."}
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "paper_id": "iclr2024_nemesis",
+  "L_prime": [
+    {
+      "unit_id": "1",
+      "P_i_n": "Section 3.3 / Algorithm 1 / Appendix A.2.7 / Tables A8-A9",
+      "C_i_n": "The paper states that PAN selects prompt positions for norm regularization according to the batch-level accuracy of corrupted prompts and applies the PAN loss only to the selected positions, while introducing an additional pre-inference step before each training batch.",
+      "Q_i_n": "Position-Aware Normalization soft-prompt CLIP CoOp per-batch pre-inference overhead",
+      "E_i_n": [
+        {
+          "source_title": "Learning to Prompt for Vision-Language Models (CoOp)",
+          "source_metadata": {"source": "arxiv", "url": "https://arxiv.org/abs/2109.01134"},
+          "evidence_snippet": "CoOp learns continuous soft prompts to adapt vision-language models such as CLIP to downstream classification tasks.",
+          "evidence_relevance": "weak"
+        },
+        {
+          "source_title": "Conditional Prompt Learning for Vision-Language Models (CoCoOp)",
+          "source_metadata": {"source": "arxiv", "url": "https://arxiv.org/abs/2203.05557"},
+          "evidence_snippet": "Extends CoOp with image-conditional context vectors; discusses soft-prompt tuning stability but does not analyze per-batch pre-inference cost.",
+          "evidence_relevance": "weak"
+        }
+      ],
+      "Flag_i_n": "Weak Evidence-Metadata Only",
+      "labeling_rationale": "Retrieved evidence establishes the soft-prompt-tuning setting at the metadata level but does not directly support or refute PAN's per-batch pre-inference design.",
+      "feedback_to_key_element_extractor_agent": "None",
+      "feedback_rationale": "Query rewriting was attempted once without surfacing a stronger record."
+    },
+    {
+      "unit_id": "2",
+      "P_i_n": "Section 3 Method / Paragraph 2",
+      "C_i_n": "We introduce a Position-Uniform Normalization (PUN) loss that regularizes the L2 norm of every learnable soft-prompt vector toward a small target norm to alleviate the Low-Norm Effect.",
+      "Q_i_n": "L2 norm regularization soft prompt vision language model CLIP",
+      "E_i_n": [
+        {
+          "source_title": "On the Role of Norms in Adapter and Prompt Tuning",
+          "source_metadata": {"source": "semantic_scholar", "url": "https://www.semanticscholar.org/paper/norms-adapter-prompt"},
+          "evidence_snippet": "Constraining the norm of learned adapter / prompt parameters can improve generalisation on downstream classification tasks for CLIP-style backbones.",
+          "evidence_relevance": "support"
+        }
+      ],
+      "Flag_i_n": "Strong Evidence-Supports",
+      "labeling_rationale": "Retrieved evidence directly supports the general claim that constraining parameter norms improves generalisation in CLIP adaptation.",
+      "feedback_to_key_element_extractor_agent": "None",
+      "feedback_rationale": "Query is sufficient."
+    },
+    {
+      "unit_id": "3",
+      "P_i_n": "Section 4 Experiments / Paragraph 3",
+      "C_i_n": "Nemesis improves the base-to-new harmonic mean by 1.8 points on average over CoOp on the 11-dataset few-shot benchmark.",
+      "Q_i_n": "CoOp base-to-new generalisation 11-dataset benchmark Nemesis",
+      "E_i_n": [],
+      "Flag_i_n": "No Evidence",
+      "labeling_rationale": "No external scholarly record corroborates this specific paper-internal numeric claim.",
+      "feedback_to_key_element_extractor_agent": "None",
+      "feedback_rationale": "Further refinement would not yield external grounding for an in-paper result number."
+    },
+    {
+      "unit_id": "4",
+      "P_i_n": "Section 6 Limitations / Paragraph 1",
+      "C_i_n": "The PAN pre-inference step introduces additional forward passes per batch, increasing training-time compute; we leave a systematic study of this trade-off to future work.",
+      "Q_i_n": "",
+      "E_i_n": [],
+      "Flag_i_n": "Non-verifiable Item",
+      "labeling_rationale": "Qualitative limitation statement; not externally verifiable. Should be evaluated for clarity and contribution framing.",
+      "feedback_to_key_element_extractor_agent": "None",
+      "feedback_rationale": "Limitation statements do not benefit from external retrieval."
+    }
+  ],
+  "T": [
+    {
+      "unit_id": "1",
+      "P_i_n": "Section 3.3 / Algorithm 1 / Appendix A.2.7 / Tables A8-A9",
+      "C_i_n": "The paper states that PAN selects prompt positions for norm regularization according to the batch-level accuracy of corrupted prompts and applies the PAN loss only to the selected positions, while introducing an additional pre-inference step before each training batch.",
+      "E_i_n": [
+        {
+          "source_title": "Learning to Prompt for Vision-Language Models (CoOp)",
+          "source_metadata": {"source": "arxiv", "url": "https://arxiv.org/abs/2109.01134"},
+          "evidence_snippet": "CoOp learns continuous soft prompts to adapt vision-language models such as CLIP to downstream classification tasks.",
+          "evidence_relevance": "weak"
+        }
+      ],
+      "Flag_i_n": "Weak Evidence-Metadata Only",
+      "verification_path": "Weak Evidence Probing",
+      "verification_question": "What is the wall-clock training-time overhead of the PAN pre-inference step relative to plain CoOp?",
+      "reasoning_process": "Only metadata-level evidence is available. Avoid factual judgments and ask a precise clarification question.",
+      "preliminary_review_point": "Please quantify the wall-clock training-time overhead of PAN's pre-inference step relative to CoOp.",
+      "review_point_type": "Clarification Request",
+      "traceability_basis": "P_i_n / C_i_n / Flag_i_n / Reasoning Process"
+    },
+    {
+      "unit_id": "2",
+      "P_i_n": "Section 3 Method / Paragraph 2",
+      "C_i_n": "We introduce a Position-Uniform Normalization (PUN) loss that regularizes the L2 norm of every learnable soft-prompt vector toward a small target norm to alleviate the Low-Norm Effect.",
+      "E_i_n": [
+        {
+          "source_title": "On the Role of Norms in Adapter and Prompt Tuning",
+          "source_metadata": {"source": "semantic_scholar", "url": "https://www.semanticscholar.org/paper/norms-adapter-prompt"},
+          "evidence_snippet": "Constraining the norm of learned adapter / prompt parameters can improve generalisation on downstream classification tasks for CLIP-style backbones.",
+          "evidence_relevance": "support"
+        }
+      ],
+      "Flag_i_n": "Strong Evidence-Supports",
+      "verification_path": "Support Verification",
+      "verification_question": "Is the PUN loss correctly motivated as alleviating the Low-Norm Effect rather than overstated as a universal regulariser?",
+      "reasoning_process": "Evidence supports the general benefit of constraining parameter norms; PUN's positioning is consistent.",
+      "preliminary_review_point": "The PUN loss is well-motivated and aligned with prior work on norm-constrained adapters/prompts.",
+      "review_point_type": "Strength",
+      "traceability_basis": "P_i_n / C_i_n / E_i_n"
+    },
+    {
+      "unit_id": "3",
+      "P_i_n": "Section 4 Experiments / Paragraph 3",
+      "C_i_n": "Nemesis improves the base-to-new harmonic mean by 1.8 points on average over CoOp on the 11-dataset few-shot benchmark.",
+      "E_i_n": [],
+      "Flag_i_n": "No Evidence",
+      "verification_path": "Internal Consistency Checking",
+      "verification_question": "Is the abstract's +1.8 figure consistent with Table 2's per-dataset numbers?",
+      "reasoning_process": "Table 2's per-dataset gains average to +1.83. The numbers are coherent but precision differs across the abstract and the table.",
+      "preliminary_review_point": "Please align +1.8 (abstract) and +1.83 (Table 2) to a single precision.",
+      "review_point_type": "Clarification Request",
+      "traceability_basis": "C_i_n / Reasoning Process"
+    },
+    {
+      "unit_id": "4",
+      "P_i_n": "Section 6 Limitations / Paragraph 1",
+      "C_i_n": "The PAN pre-inference step introduces additional forward passes per batch, increasing training-time compute; we leave a systematic study of this trade-off to future work.",
+      "E_i_n": [],
+      "Flag_i_n": "Non-verifiable Item",
+      "verification_path": "Non-verifiable Quality Assessment",
+      "verification_question": "Is the limitation statement specific enough for readers to judge the deployment trade-off?",
+      "reasoning_process": "Statement is honest but qualitative; recommend quantification.",
+      "preliminary_review_point": "Quantify the additional pre-inference cost (e.g. GPU-hours or FLOPs) to make the trade-off concrete.",
+      "review_point_type": "Weakness",
+      "traceability_basis": "C_i_n / Reasoning Process"
+    }
+  ],
+  "Y": {
+    "summary": "Nemesis studies the role of the L2 norm of learnable soft prompts in CLIP-style vision-language models. It proposes PUN, a uniform L2-norm regulariser over all prompt positions, and PAN, a position-aware variant that performs a per-batch pre-inference step to select which prompt positions to regularise. Experiments report a +1.8 base-to-new harmonic-mean gain on the 11-dataset few-shot benchmark.",
+    "strengths": [
+      {
+        "comment": "The PUN loss is well-motivated and aligned with prior work on norm-constrained adapters and prompt tuning.",
+        "impact": "Medium",
+        "evidence_grounding": "Semantic-Scholar record: 'On the Role of Norms in Adapter and Prompt Tuning'.",
+        "trace_ids": ["T_i-2", "U2"]
+      }
+    ],
+    "weaknesses": [
+      {
+        "comment": "The PAN pre-inference step's training-time overhead is acknowledged but not quantified; this leaves the cost-side of the contribution open.",
+        "impact": "Medium",
+        "evidence_grounding": "Non-verifiable limitation statement; internal reasoning only.",
+        "trace_ids": ["T_i-4", "U4"]
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is the wall-clock training-time overhead of PAN's pre-inference step relative to plain CoOp?",
+        "type": "Reproducibility",
+        "trace_ids": ["T_i-1", "U1"]
+      },
+      {
+        "question": "Could the authors align the +1.8 (abstract) and +1.83 (Table 2) harmonic-mean numbers to a single precision?",
+        "type": "Ambiguity",
+        "trace_ids": ["T_i-3", "U3"]
+      }
+    ],
+    "suggestions": [
+      {
+        "suggestion": "Add a small training-time table that reports GPU-hours and FLOPs for CoOp, CoCoOp, and PAN under identical settings, so the trade-off is concrete.",
+        "related_to": "Weakness W1 / Question Q1",
+        "trace_ids": ["T_i-1", "T_i-4"]
+      }
+    ],
+    "traceability_notes": [
+      {
+        "review_point_id": "S1",
+        "source_position": "Section 3 Method / Paragraph 2",
+        "paper_fragment": "PUN loss that regularizes the L2 norm of every learnable soft-prompt vector...",
+        "evidence_set": "Semantic Scholar: norms-adapter-prompt",
+        "evidence_state_label": "Strong Evidence-Supports",
+        "reasoning_unit_id": "T_i-2",
+        "rationale": "Strength is grounded in a directly supporting external record."
+      },
+      {
+        "review_point_id": "Q1",
+        "source_position": "Section 3.3 / Algorithm 1 / Appendix A.2.7 / Tables A8-A9",
+        "paper_fragment": "PAN selects prompt positions for norm regularization... pre-inference step before each training batch.",
+        "evidence_set": "arXiv:2109.01134 + arXiv:2203.05557",
+        "evidence_state_label": "Weak Evidence-Metadata Only",
+        "reasoning_unit_id": "T_i-1",
+        "rationale": "Cautious clarification question chosen because only metadata-level evidence is available."
+      }
+    ]
+  },
+  "alpha": 0.525
+}

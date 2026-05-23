@@ -1,0 +1,24 @@
+eval:
+  auto_metrics:
+    rouge_types: [rouge1, rouge2, rougeL]
+    bertscore_model: roberta-large
+    bertscore_lang: en
+    sn_n_per_aspect: 5     # ITF-IDF / SN-F1 sentence-level granularity
+    sn_threshold: 0.55
+
+  llm_judge:
+    judges: [gemini, deepseek, claude]
+    dimensions:
+      - pertinency
+      - usefulness
+      - evidence_groundedness
+      - traceability
+      - depth
+      - comprehensiveness
+    scale: [1, 10]
+    use_cache: true
+    cache_path: ./data/samples/cached_llm_judgments.json
+
+  evidence_quality:
+    metrics: [EA, LC, ECR, SLA]
+    sample_size: 100

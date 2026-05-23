@@ -1,0 +1,31 @@
+student_inference:
+  # Path to the distilled student adapter directory (LoRA + tokenizer).
+  # See checkpoints/README.md for the download instructions during review.
+  model_path: ./checkpoints/egtr_student
+
+  # Generation hyperparameters. Default to greedy decoding to keep outputs
+  # reproducible across runs (paper §4 reports figures under do_sample=False).
+  generation:
+    max_new_tokens: 1024
+    do_sample: false
+    temperature: 0.0
+    top_p: 1.0
+    num_beams: 1
+
+  # Maximum tokens the student tokenizer is allowed to encode from the
+  # serialized evidence-enhanced input L'_i (positions + fragments + evidence
+  # + flags). Match this to the model's context window minus max_new_tokens.
+  max_input_length: 8192
+
+  # Task prefix used during inference. Should match configs/student_train.yaml
+  # :: distillation.task_prefixes. The student is run with the Review prefix
+  # during deployment; the Reasoning prefix is exposed for diagnostic runs.
+  task_prefix: review
+
+  precision: bfloat16
+  device: auto       # "cuda" | "cpu" | "auto"
+
+  # When true, the student receives evidence-state labels (Flag_i_n) inside
+  # the serialized input. Disable to reproduce the w/o-evidence-labels
+  # ablation at inference time without retraining.
+  include_flags: true

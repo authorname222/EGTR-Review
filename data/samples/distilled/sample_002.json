@@ -1,0 +1,161 @@
+{
+  "paper_id": "iclr2019_0002",
+  "L_prime": [
+    {
+      "unit_id": "1",
+      "P_i_n": "Section 3 Method / Paragraph 1",
+      "C_i_n": "We replace the dense softmax attention with a routed attention where each query selects k=64 keys from the cache.",
+      "Q_i_n": "top-k sparse attention transformer language model routing",
+      "E_i_n": [
+        {
+          "source_title": "Routing Transformers",
+          "source_metadata": {"source": "arxiv", "url": "https://arxiv.org/abs/2003.05997"},
+          "evidence_snippet": "We propose top-k routing attention that clusters keys and routes queries to the most relevant cluster.",
+          "evidence_relevance": "support"
+        }
+      ],
+      "Flag_i_n": "Strong Evidence-Supports",
+      "labeling_rationale": "The retrieved Routing Transformers paper introduces the same top-k routing primitive used in this paper.",
+      "feedback_to_key_element_extractor_agent": "None",
+      "feedback_rationale": "Query is directly grounded in C_i_n and produced a strongly relevant record."
+    },
+    {
+      "unit_id": "2",
+      "P_i_n": "Section 4 Experiments / Paragraph 2",
+      "C_i_n": "Our model matches full-attention perplexity within 0.2 nats while reducing memory by 6.4x at 8k context.",
+      "Q_i_n": "sparse attention long context perplexity full attention parity 8k routing overhead",
+      "E_i_n": [
+        {
+          "source_title": "Efficiency Pitfalls of Sparse Attention at 8k Context",
+          "source_metadata": {"source": "semantic_scholar", "url": "https://www.semanticscholar.org/paper/eff-pitfalls"},
+          "evidence_snippet": "Many sparse-attention claims underestimate the memory overhead of the routing network itself, especially at sequence lengths above 8k.",
+          "evidence_relevance": "weak"
+        }
+      ],
+      "Flag_i_n": "Weak Evidence-Metadata Only",
+      "labeling_rationale": "Topically relevant critique paper available only at the abstract/metadata level; not specific enough to refute the 6.4× claim directly.",
+      "feedback_to_key_element_extractor_agent": "Need query expansion",
+      "feedback_rationale": "Adding 'router memory accounting' to the query may surface a more specific record."
+    },
+    {
+      "unit_id": "3",
+      "P_i_n": "Section 6 Limitations / Paragraph 1",
+      "C_i_n": "Routing quality degrades when k<32; we did not test contexts longer than 16k.",
+      "Q_i_n": "",
+      "E_i_n": [],
+      "Flag_i_n": "Non-verifiable Item",
+      "labeling_rationale": "Honest limitation statement; not externally verifiable. Should be evaluated for completeness and clarity only.",
+      "feedback_to_key_element_extractor_agent": "None",
+      "feedback_rationale": "Limitation statements do not benefit from external retrieval."
+    }
+  ],
+  "T": [
+    {
+      "unit_id": "1",
+      "P_i_n": "Section 3 Method / Paragraph 1",
+      "C_i_n": "We replace the dense softmax attention with a routed attention where each query selects k=64 keys from the cache.",
+      "E_i_n": [
+        {
+          "source_title": "Routing Transformers",
+          "source_metadata": {"source": "arxiv", "url": "https://arxiv.org/abs/2003.05997"},
+          "evidence_snippet": "We propose top-k routing attention that clusters keys and routes queries to the most relevant cluster.",
+          "evidence_relevance": "support"
+        }
+      ],
+      "Flag_i_n": "Strong Evidence-Supports",
+      "verification_path": "Support Verification",
+      "verification_question": "Does the cited Routing Transformers literature actually support the same top-k routing primitive, and is the paper's variant (Gumbel-top-k) a clear contribution beyond it?",
+      "reasoning_process": "The cited paper introduces the underlying primitive; the paper's contribution is the differentiable Gumbel-top-k variant. Match is strong.",
+      "preliminary_review_point": "Top-k routing design is consistent with Routing Transformers; the differentiable Gumbel-top-k is a clean contribution.",
+      "review_point_type": "Strength",
+      "traceability_basis": "P_i_n / C_i_n / E_i_n"
+    },
+    {
+      "unit_id": "2",
+      "P_i_n": "Section 4 Experiments / Paragraph 2",
+      "C_i_n": "Our model matches full-attention perplexity within 0.2 nats while reducing memory by 6.4x at 8k context.",
+      "E_i_n": [
+        {
+          "source_title": "Efficiency Pitfalls of Sparse Attention at 8k Context",
+          "source_metadata": {"source": "semantic_scholar", "url": "https://www.semanticscholar.org/paper/eff-pitfalls"},
+          "evidence_snippet": "Many sparse-attention claims underestimate the memory overhead of the routing network itself, especially at sequence lengths above 8k.",
+          "evidence_relevance": "weak"
+        }
+      ],
+      "Flag_i_n": "Weak Evidence-Metadata Only",
+      "verification_path": "Weak Evidence Probing",
+      "verification_question": "Does the reported 6.4× memory reduction account for the routing-network memory?",
+      "reasoning_process": "The retrieved critique paper raises this concern at the metadata level; the paper should be asked to clarify its memory accounting.",
+      "preliminary_review_point": "Please clarify whether the 6.4× memory reduction at 8k context includes the routing-network memory.",
+      "review_point_type": "Question",
+      "traceability_basis": "P_i_n / C_i_n / Flag_i_n / Reasoning Process"
+    },
+    {
+      "unit_id": "3",
+      "P_i_n": "Section 6 Limitations / Paragraph 1",
+      "C_i_n": "Routing quality degrades when k<32; we did not test contexts longer than 16k.",
+      "E_i_n": [],
+      "Flag_i_n": "Non-verifiable Item",
+      "verification_path": "Non-verifiable Quality Assessment",
+      "verification_question": "Is the limitation statement specific enough to allow reproduction and inform follow-up work?",
+      "reasoning_process": "The statement is honest but qualitative; ask the authors to discuss how the router's compute scales with k.",
+      "preliminary_review_point": "The limitations section is appreciated. Please discuss how router compute scales with k, especially for long contexts.",
+      "review_point_type": "Question",
+      "traceability_basis": "C_i_n / Reasoning Process"
+    }
+  ],
+  "Y": {
+    "summary": "The paper proposes a routed sparse attention that selects k=64 keys per query via a differentiable Gumbel-top-k router. Experiments report parity with full attention within 0.2 nats while reducing memory by 6.4× at 8k context.",
+    "strengths": [
+      {
+        "comment": "The top-k routing design is consistent with the Routing Transformers line of work, and the differentiable Gumbel-top-k variant is a clean methodological contribution.",
+        "impact": "Medium",
+        "evidence_grounding": "arXiv:2003.05997 (Routing Transformers).",
+        "trace_ids": ["T_i-1", "U1"]
+      }
+    ],
+    "weaknesses": [
+      {
+        "comment": "The 6.4× memory reduction is reported without an explicit accounting of the routing network's memory overhead; recent critiques argue this overhead can offset large fractions of the claimed savings.",
+        "impact": "High",
+        "evidence_grounding": "Semantic-Scholar critique on sparse-attention memory accounting (metadata only).",
+        "trace_ids": ["T_i-2", "U2"]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Does the reported 6.4× memory reduction at 8k context include the routing-network memory, and how does the router's compute scale with k?",
+        "type": "Reproducibility",
+        "trace_ids": ["T_i-2", "T_i-3"]
+      }
+    ],
+    "suggestions": [
+      {
+        "suggestion": "Provide an explicit memory-accounting table breaking down attention memory, KV-cache memory, and router parameter / activation memory at 8k and 16k contexts.",
+        "related_to": "Weakness W1",
+        "trace_ids": ["T_i-2", "U2"]
+      }
+    ],
+    "traceability_notes": [
+      {
+        "review_point_id": "S1",
+        "source_position": "Section 3 Method / Paragraph 1",
+        "paper_fragment": "We replace the dense softmax attention with a routed attention...",
+        "evidence_set": "arXiv:2003.05997",
+        "evidence_state_label": "Strong Evidence-Supports",
+        "reasoning_unit_id": "T_i-1",
+        "rationale": "Strength is grounded in directly comparable prior work."
+      },
+      {
+        "review_point_id": "W1",
+        "source_position": "Section 4 Experiments / Paragraph 2",
+        "paper_fragment": "Our model matches full-attention perplexity within 0.2 nats while reducing memory by 6.4x at 8k context.",
+        "evidence_set": "Semantic Scholar: Efficiency Pitfalls of Sparse Attention at 8k Context",
+        "evidence_state_label": "Weak Evidence-Metadata Only",
+        "reasoning_unit_id": "T_i-2",
+        "rationale": "Cautious wording; the critique exists only at the metadata level so the comment is phrased as a clarification, not a strong refutation."
+      }
+    ]
+  },
+  "alpha": 0.6
+}
