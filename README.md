@@ -3,7 +3,7 @@
 > Anonymous code repository for double-blind review. Identifying information has been removed. The repository provides code, prompts, configurations, sample data, data construction scripts, and reproduction utilities. Full release will follow the licensing constraints of the original data sources.
 
 <p align="center">
-  <img src="assets/framework.svg" width="800"/>
+  <img src="assets/framework.png" width="800"/>
 </p>
 
 ## Overview
